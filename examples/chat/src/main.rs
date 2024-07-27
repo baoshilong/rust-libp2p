@@ -127,6 +127,13 @@ async fn main() -> Result<(), Box<dyn Error>> {
                 SwarmEvent::NewListenAddr { address, .. } => {
                     println!("Local node is listening on {address}");
                 }
+                SwarmEvent::ConnectionClosed { peer_id, cause, .. } => {
+                    if let Some(err) = cause {
+                        println!("Connection to {peer_id} closed: {err}");
+                    } else {
+                        println!("Connection to {peer_id} closed");
+                    }
+                }
                 _ => {}
             }
         }
