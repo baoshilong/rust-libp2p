@@ -56,7 +56,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     loop {
         match swarm.select_next_some().await {
-            SwarmEvent::NewListenAddr { address, listener_id } => println!("Listening on {address:?} {listener_id:?}"),
+            SwarmEvent::NewListenAddr { address, listener_id } => println!("Listening on {address:?} {listener_id:?}2"),
             SwarmEvent::Behaviour(event) => println!("{event:?}"),
             _ => {}
         }
