@@ -56,8 +56,10 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     loop {
         match swarm.select_next_some().await {
-            SwarmEvent::NewListenAddr { address, listener_id } => println!("Listening on {address:?} {listener_id:?}2"),
+            SwarmEvent::NewListenAddr { address, listener_id } => println!("Listening on {address:?} {listener_id:?}"),
             SwarmEvent::Behaviour(event) => println!("{event:?}"),
+            SwarmEvent::ConnectionClosed { peer_id, connection_id, endpoint, num_established, cause } => 
+                println!("Connection {connection_id:?} closed with {peer_id:?} at {endpoint:?} ({num_established:?} established): {cause:?}"),
             _ => {}
         }
     }
